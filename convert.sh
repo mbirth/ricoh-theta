@@ -8,7 +8,8 @@ if [ "$#" = "0" ]; then
 fi
 
 if [ -z "$CONCURRENCY_LEVEL" ]; then
-    CONCURRENCY_LEVEL=1
+#    CONCURRENCY_LEVEL=1
+    CONCURRENCY_LEVEL=`grep "^core id" /proc/cpuinfo | sort -u | wc -l`
 fi
 
 SCRIPTREAL=`realpath "$0"`
