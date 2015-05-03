@@ -27,6 +27,11 @@ while [ "$#" -gt 0 ]; do
 
     echo "Pitch / Roll: $PITCH / $ROLL"
 
+    if [ -z "$PITCH" -o "$PITCH" == "0" -o -z "$ROLL" -o "$ROLL" == "0" ]; then
+        echo "No pitch/roll info found or already zero. No processing neccessary."
+        continue
+    fi
+
 #    echo "i w3584 h1792 f4 v360 r$ROLL p$PITCH y0 n\"$REALNAME\"" > "$BASENAME.pto"
 #    echo "p w3584 h1792 f2 v360 r0 p0 y0 n\"JPEG q99\"" >> "$BASENAME.pto"
 #    nona -o "$OUTNAME" "$BASENAME.pto"
