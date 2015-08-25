@@ -35,8 +35,9 @@ if [ -f "$1" ]; then
     mv "$BASENAME.exv" "${BASENAME}_xmp.exv"
     exiv2 in -M "reg GPano http://ns.google.com/photos/1.0/panorama/" -M "set Xmp.GPano.PosePitchDegrees 0" -M "set Xmp.GPano.PoseRollDegrees 0" "${BASENAME}_xmp.jpg"
     rm "${BASENAME}_xmp.exv"
+    exiv2 mv -T "${BASENAME}_xmp.jpg"
 else
-    echo "RICOH Theta to PhotoSphere converter"
+    echo "RICOH Theta PhotoSphere normaliser"
     echo "Usage: $0 file"
     exit 3
 fi
