@@ -14,6 +14,14 @@ if [ -f "$1" ]; then
         exit 1
     fi
 
+    # Theta / Theta m15
+#    WIDTH=3584
+#    HEIGHT=1792
+
+    # Theta S
+    WIDTH=5376
+    HEIGHT=2688
+
     INFO=`exiv2 -pa "$REALNAME" | grep "Pose.*Degrees"`
     PITCH=`echo "$INFO" | grep "Pitch" | sed -nre 's/^.* ([0-9.-]+)$/\1/p'`
     ROLL=`echo "$INFO" | grep "Roll" | sed -nre 's/^.* ([0-9.-]+)$/\1/p'`
@@ -29,7 +37,7 @@ if [ -f "$1" ]; then
 #    echo "p w3584 h1792 f2 v360 r0 p0 y0 n\"JPEG q99\"" >> "$BASENAME.pto"
 #    nona -o "$OUTNAME" "$BASENAME.pto"
 #    rm "$BASENAME.pto"
-    echo -e "i w3584 h1792 f4 v360 r$ROLL p$PITCH y0 n\"$REALNAME\"\np w3584 h1792 f2 v360 r0 p0 y0 n\"JPEG q99\"" | nona -g -o "$OUTNAME" /dev/stdin
+    echo -e "i w$WIDTH h$HEIGHT f4 v360 r$ROLL p$PITCH y0 n\"$REALNAME\"\np w$WIDTH h$HEIGHT f2 v360 r0 p0 y0 n\"JPEG q99\"" | nona -g -o "$OUTNAME" /dev/stdin
 
     exiv2 ex "$REALNAME"
     mv "$BASENAME.exv" "${BASENAME}_xmp.exv"
